@@ -3,6 +3,7 @@ package org.example.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -15,6 +16,7 @@ public class Company {
 
     private String name;
 
+    @Column(unique = true)
     private String cnpj;
 
     private String email;
@@ -26,9 +28,15 @@ public class Company {
     private LocalDateTime createdAt;
 
     @PrePersist
-    protected void onCreate() {
+    public void prePersist() {
         this.createdAt = LocalDateTime.now();
     }
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<User> users;
+
+    @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Course> courses;
 
     public UUID getId() {
         return id;

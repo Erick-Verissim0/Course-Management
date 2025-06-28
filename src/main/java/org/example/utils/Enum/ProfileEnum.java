@@ -1,6 +1,6 @@
 package org.example.utils.Enum;
 
-public enum Profile {
+public enum ProfileEnum {
     ADMIN,
     INSTRUTOR,
     ALUNO

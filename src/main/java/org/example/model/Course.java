@@ -2,6 +2,7 @@ package org.example.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,15 +17,21 @@ public class Course {
 
     private String description;
 
-    private int worload;
+    private int workload;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "instructor_id", nullable = false)
+    @JoinColumn(name = "instructorId", nullable = false)
     private User instructor;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "company_id", nullable = false)
+    @JoinColumn(name = "companyId", nullable = false)
     private Company company;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Room> rooms;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Assessment> assessments;
 
     private boolean active;
 
@@ -52,12 +59,12 @@ public class Course {
         this.description = description;
     }
 
-    public int getWorload() {
-        return worload;
+    public int getWorkload() {
+        return workload;
     }
 
-    public void setWorload(int worload) {
-        this.worload = worload;
+    public void setWorkload(int workload) {
+        this.workload = workload;
     }
 
     public User getInstructor() {

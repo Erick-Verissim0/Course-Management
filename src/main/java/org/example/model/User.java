@@ -1,12 +1,13 @@
 package org.example.model;
 
 import jakarta.persistence.*;
-import org.example.utils.Enum.Profile;
+import org.example.utils.Enum.ProfileEnum;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,13 +21,16 @@ public class User {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Profile profile;
+    private ProfileEnum profile;
 
     private boolean active;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "company_id", nullable = false)
+    @JoinColumn(name = "companyId", nullable = false)
     private Company company;
+
+    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
+    private List<Course> courses;
 
     public User() {
     }
@@ -63,11 +67,11 @@ public class User {
         this.password = password;
     }
 
-    public Profile getProfile() {
+    public ProfileEnum getProfile() {
         return profile;
     }
 
-    public void setProfile(Profile profile) {
+    public void setProfile(ProfileEnum profile) {
         this.profile = profile;
     }
 
