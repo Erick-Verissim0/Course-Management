@@ -21,7 +21,7 @@ public class Course {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "instructorId", nullable = false)
-    private User instructor;
+    private Person instructor;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "companyId", nullable = false)
@@ -67,11 +67,11 @@ public class Course {
         this.workload = workload;
     }
 
-    public User getInstructor() {
+    public Person getInstructor() {
         return instructor;
     }
 
-    public void setInstructor(User instructor) {
+    public void setInstructor(Person instructor) {
         this.instructor = instructor;
     }
 

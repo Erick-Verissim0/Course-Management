@@ -16,7 +16,7 @@ public class Registration {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "studentId", nullable = false)
-    private User user;
+    private Person person;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "roomId", nullable = false)
@@ -42,20 +42,20 @@ public class Registration {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Room getRooms() {
-        return rooms;
+        return room;
     }
 
     public void setRooms(Room rooms) {
-        this.rooms = rooms;
+        this.room = room;
     }
 
     public StatusEnum getStatusEnum() {

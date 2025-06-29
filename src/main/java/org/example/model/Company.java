@@ -33,7 +33,7 @@ public class Company {
     }
 
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> users;
+    private List<Person> person;
 
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Course> courses;

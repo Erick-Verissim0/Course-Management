@@ -9,133 +9,74 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.1.3</version>
-        <relativePath/>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <groupId>com.seuprojeto</groupId>
     <artifactId>javaee-spring-demo</artifactId>
     <version>1.0.0</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
+
+    <name>javaee-spring-demo</name>
+    <description>Curso de Gestão - Spring Boot + Docker</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>eclipse-jakarta</id>
-            <name>Eclipse Jakarta Repository</name>
-            <url>https://repo.eclipse.org/content/groups/staging/</url>
-        </repository>
-        <repository>
-            <id>jboss-public</id>
-            <name>JBoss Public</name>
-            <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
 
     <dependencies>
 
+        <!-- Spring Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Spring Data JPA -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- PostgreSQL Driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- DevTools (opcional) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
 
+        <!-- Logging -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
 
+        <!-- Dotenv (opcional, se você usa .env) -->
         <dependency>
             <groupId>io.github.cdimascio</groupId>
             <artifactId>dotenv-java</artifactId>
             <version>3.2.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.platform</groupId>
-            <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>9.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.servlet.jsp.jstl</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.web</groupId>
-            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-            <version>2.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.glassfish</groupId>
-            <artifactId>jakarta.faces</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.struts</groupId>
-            <artifactId>struts2-core</artifactId>
-            <version>2.5.30</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-            <version>3.0.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jakarta.ejb</groupId>
-            <artifactId>jakarta.ejb-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>6.2.7.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>2.1.214</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.icefaces</groupId>
-            <artifactId>icefaces</artifactId>
-            <version>4.3.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>13.0.6</version>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Plugin do Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
+
 </project>

@@ -16,7 +16,7 @@ public class Assessment {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "studentId", nullable = false)
-    private User user;
+    private Person person;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "courseId", nullable = false)
@@ -37,12 +37,12 @@ public class Assessment {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Course getCourse() {

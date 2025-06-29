@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "person")
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(columnDefinition = "UUID")
@@ -32,7 +32,7 @@ public class User {
     @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
     private List<Course> courses;
 
-    public User() {
+    public Person() {
     }
 
     public UUID getId() {
