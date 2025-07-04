@@ -15,11 +15,11 @@ public class Registration {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "studentId", nullable = false)
+    @JoinColumn(name = "student_idd", nullable = false)
     private Person person;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "roomId", nullable = false)
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
     @Enumerated(EnumType.STRING)

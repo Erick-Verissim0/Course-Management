@@ -1,17 +1,10 @@
-package org.example.model;
+package org.example.dto.person;
 
-import jakarta.persistence.*;
 import org.example.utils.Enum.ProfileEnum;
 
-import java.util.List;
 import java.util.UUID;
 
-@Entity
-@Table(name = "person")
-public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(columnDefinition = "UUID")
+public class PersonRequestDTO {
     private UUID id;
 
     private String name;
@@ -20,26 +13,17 @@ public class Person {
 
     private String password;
 
-    @Enumerated(EnumType.STRING)
     private ProfileEnum profile;
 
-    private boolean active;
+    private Boolean active;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "company_id", nullable = false)
-    private Company company;
-
-    @OneToMany(mappedBy = "instructor", cascade = CascadeType.ALL)
-    private List<Course> courses;
-
-    public Person() {
-    }
+    private UUID company;
 
     public UUID getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId (UUID id) {
         this.id = id;
     }
 
@@ -75,19 +59,19 @@ public class Person {
         this.profile = profile;
     }
 
-    public boolean isActive() {
+    public Boolean getActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
-    public Company getCompany() {
+    public UUID getCompanyId() {
         return company;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyId(UUID id) {
+        this.company = id;
     }
 }

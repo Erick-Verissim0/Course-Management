@@ -15,7 +15,7 @@ public class Room {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "courseId", nullable = false)
+    @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
     private LocalDateTime startDate;

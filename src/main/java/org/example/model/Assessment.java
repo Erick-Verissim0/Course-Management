@@ -15,11 +15,11 @@ public class Assessment {
     private UUID id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "studentId", nullable = false)
+    @JoinColumn(name = "student_id", nullable = false)
     private Person person;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "courseId", nullable = false)
+    @JoinColumn(name = "course_id", nullable = false)
     private Course course;
 
     @Column(precision = 5, scale = 2)
