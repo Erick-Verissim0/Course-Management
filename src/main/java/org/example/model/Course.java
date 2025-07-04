@@ -20,11 +20,11 @@ public class Course {
     private int workload;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "instructorId", nullable = false)
+    @JoinColumn(name = "instructor_id", nullable = false)
     private Person instructor;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "companyId", nullable = false)
+    @JoinColumn(name = "company_id", nullable = false)
     private Company company;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)

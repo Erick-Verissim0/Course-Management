@@ -1,16 +1,19 @@
 package org.example.controller;
 
-import org.example.model.Person;
-import org.example.service.Person.PersonUseCase;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.dto.person.PersonRequestDTO;
+import org.example.dto.person.PersonResponseDTO;
+import org.example.usecase.person.PersonUseCase;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/admin/persons")
 @SpringBootApplication
 public class PersonController {
     private final PersonUseCase personUseCase;
@@ -20,7 +23,19 @@ public class PersonController {
     }
 
     @GetMapping
-    public List<Person> getAllPersons() {
-        return personUseCase.getPersons();
+    public List<PersonResponseDTO> getAllPersons(@RequestParam Optional<Boolean> active) {
+        return personUseCase.getPersons(active);
+    }
+
+    @GetMapping("/{id}")
+    public PersonResponseDTO getOnePerson(@PathVariable UUID id) {
+        return personUseCase.getPerson(id);
+    }
+
+    @PostMapping()
+    public ResponseEntity<PersonResponseDTO> postPerson(@RequestBody PersonRequestDTO dto) {
+       PersonResponseDTO created = personUseCase.postPerson(dto);
+
+       return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 }
