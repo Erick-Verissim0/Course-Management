@@ -7,7 +7,6 @@ import org.example.model.Company;
 import org.example.model.Person;
 import org.example.repository.CompanyRepository;
 import org.example.repository.PersonRepository;
-import org.example.utils.Enum.ProfileEnum;
 import org.example.utils.auth.PasswordUtils;
 import org.springframework.stereotype.Service;
 
@@ -63,5 +62,30 @@ public class PersonUseCaseImpl implements PersonUseCase {
         return PersonMapper.toDTO(person);
     }
 
-    //    FALTA O PUT E O DELETE
+    @Override
+    public void deletePerson(UUID id) {
+      Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("Person not found!"));
+
+      person.setActive(false);
+      personRepository.save(person);
+    }
+
+    @Override
+    public PersonResponseDTO updatePerson(UUID id, PersonRequestDTO newPerson) {
+      Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("Person not found!"));
+
+      Company company = companyRepository.findById(newPerson.getCompanyId())
+          .orElseThrow(() -> new RuntimeException("Company not found!"));
+
+      person.setName(newPerson.getName());
+      person.setEmail(newPerson.getEmail());
+      person.setPassword(newPerson.getPassword());
+      person.setProfile(newPerson.getProfile());
+      person.setActive(newPerson.getActive());
+      person.setCompany(company);
+
+      personRepository.save(person);
+
+      return PersonMapper.toDTO(person);
+    }
 }

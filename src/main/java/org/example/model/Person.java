@@ -75,7 +75,7 @@ public class Person {
         this.profile = profile;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 

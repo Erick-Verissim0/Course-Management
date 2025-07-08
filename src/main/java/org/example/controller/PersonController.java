@@ -11,6 +11,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/admin/persons")
@@ -34,8 +38,20 @@ public class PersonController {
 
     @PostMapping()
     public ResponseEntity<PersonResponseDTO> postPerson(@RequestBody PersonRequestDTO dto) {
-       PersonResponseDTO created = personUseCase.postPerson(dto);
+      PersonResponseDTO created = personUseCase.postPerson(dto);
 
-       return ResponseEntity.status(HttpStatus.CREATED).body(created);
+      return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletePerson(@PathVariable UUID id) {
+      personUseCase.deletePerson(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonResponseDTO> updatePerson(@PathVariable UUID id, @RequestBody PersonRequestDTO newPerson) {
+      PersonResponseDTO updatePerson = personUseCase.updatePerson(id, newPerson);
+
+      return ResponseEntity.ok(updatePerson);
     }
 }

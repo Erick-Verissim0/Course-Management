@@ -13,4 +13,8 @@ public interface PersonUseCase {
     PersonResponseDTO getPerson(UUID id);
 
     PersonResponseDTO postPerson(PersonRequestDTO dto);
+
+    void deletePerson(UUID id);
+
+    PersonResponseDTO updatePerson(UUID id, PersonRequestDTO newPerson);
 }
