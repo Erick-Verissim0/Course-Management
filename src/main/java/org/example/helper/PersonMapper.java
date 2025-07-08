@@ -12,7 +12,7 @@ public class PersonMapper {
         dto.setName(person.getName());
         dto.setEmail(person.getEmail());
         dto.setProfile(person.getProfile());
-        dto.setActive(person.isActive());
+        dto.setActive(person.getActive());
 
         Company company = person.getCompany();
         if (company != null) {

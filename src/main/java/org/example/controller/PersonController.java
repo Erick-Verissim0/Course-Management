@@ -13,6 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
 
 @RestController
@@ -45,5 +46,12 @@ public class PersonController {
     @DeleteMapping("/{id}")
     public void deletePerson(@PathVariable UUID id) {
       personUseCase.deletePerson(id);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonResponseDTO> updatePerson(@PathVariable UUID id, @RequestBody PersonRequestDTO newPerson) {
+      PersonResponseDTO updatePerson = personUseCase.updatePerson(id, newPerson);
+
+      return ResponseEntity.ok(updatePerson);
     }
 }

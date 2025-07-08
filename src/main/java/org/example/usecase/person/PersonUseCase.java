@@ -2,7 +2,6 @@ package org.example.usecase.person;
 
 import org.example.dto.person.PersonRequestDTO;
 import org.example.dto.person.PersonResponseDTO;
-import org.example.model.Person;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +15,6 @@ public interface PersonUseCase {
     PersonResponseDTO postPerson(PersonRequestDTO dto);
 
     void deletePerson(UUID id);
+
+    PersonResponseDTO updatePerson(UUID id, PersonRequestDTO newPerson);
 }

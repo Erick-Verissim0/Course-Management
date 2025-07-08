@@ -70,5 +70,22 @@ public class PersonUseCaseImpl implements PersonUseCase {
       personRepository.save(person);
     }
 
-    // FALTA O PUT
+    @Override
+    public PersonResponseDTO updatePerson(UUID id, PersonRequestDTO newPerson) {
+      Person person = personRepository.findById(id).orElseThrow(() -> new RuntimeException("Person not found!"));
+
+      Company company = companyRepository.findById(newPerson.getCompanyId())
+          .orElseThrow(() -> new RuntimeException("Company not found!"));
+
+      person.setName(newPerson.getName());
+      person.setEmail(newPerson.getEmail());
+      person.setPassword(newPerson.getPassword());
+      person.setProfile(newPerson.getProfile());
+      person.setActive(newPerson.getActive());
+      person.setCompany(company);
+
+      personRepository.save(person);
+
+      return PersonMapper.toDTO(person);
+    }
 }
