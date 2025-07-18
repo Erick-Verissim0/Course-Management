@@ -55,7 +55,7 @@ public class Registration {
     }
 
     public void setRooms(Room rooms) {
-        this.room = room;
+        this.room = rooms;
     }
 
     public StatusEnum getStatusEnum() {

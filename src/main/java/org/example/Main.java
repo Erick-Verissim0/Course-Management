@@ -13,8 +13,6 @@ public class Main {
             System.setProperty("server.PORT", port);
         }
 
-        System.out.println("Server started on port " + port);
-
         SpringApplication.run(Main.class, args);
     }
 }
